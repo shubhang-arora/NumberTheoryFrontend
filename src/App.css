@@ -1,44 +1,13 @@
-#root {
-  background-color: #f4f7fa;
-}
-
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding: '10px 10px 10px 10px';
+  background-color: #f4f7fa;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width: 100vw;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-container {
+  padding: '10px 10px 10px 10px';
+  min-width: 90vw;
 }
 
 .analytics-col {
@@ -54,4 +23,24 @@
 
 .graph-card-header {
   background-color: #ffffff;
+}
+
+.form-card {
+  border-radius: 10px;
+}
+
+.form-card-header {
+  height: 40px;
+  background: rgb(9, 46, 60);
+  background: linear-gradient(
+    90deg,
+    rgba(9, 46, 60, 1) 38%,
+    rgba(16, 65, 89, 1) 74%,
+    rgba(23, 83, 117, 1) 100%
+  );
+}
+
+.form-title {
+  font-size: 20px;
+  color: #ffffff;
 }

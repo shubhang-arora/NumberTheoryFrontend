@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CustomFormDispatcher } from '../redux';
 import {
@@ -9,6 +9,7 @@ import {
   OverlayTrigger,
   Tooltip,
   Image,
+  Card,
 } from 'react-bootstrap';
 import FormElement from '../components/formElement';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -21,56 +22,97 @@ const CustomForm = () => {
     customFormDispatcher.fetchFormElements();
   }, []);
 
-  const { formElements } = useSelector((state) => {
+  const { formElements, formValues } = useSelector((state) => {
     return {
       formElements: state.customForm.formElements,
+      formValues: state.customForm.formValues,
     };
   });
 
+  const handleFormValuesChange = (id, value, type) => {
+    customFormDispatcher.changeFormValue(id, value, type);
+  };
+
+  const [dropDownValue, setDropDownValue] = useState('');
+  console.log(typeof dropDownValue);
+
   return (
     <Row style={{ marginTop: '20px' }}>
-      <Col md="6" sm="12">
-        <Form>
-          {formElements.length &&
-            formElements.map((element, index) => (
-              <Form.Group key={index}>
-                <Form.Label style={{ marginRight: '5px' }}>
-                  {element.name}
-                </Form.Label>
+      <Col md="6" sm="12" style={{ marginTop: '15px' }}>
+        <Card className="from-card">
+          <Card.Header className="form-card-header">
+            <Card.Title className="form-title">Form A</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Form>
+              {formElements.length &&
+                formElements.map((element, index) => (
+                  <Form.Group key={index}>
+                    <Form.Label style={{ marginRight: '5px' }}>
+                      {element.name}
+                    </Form.Label>
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={
+                        <Tooltip id={element.id}>{element.description}</Tooltip>
+                      }
+                    >
+                      <IoMdInformationCircleOutline />
+                    </OverlayTrigger>
+                    <FormElement
+                      value={
+                        formValues[element.id] ? formValues[element.id] : ''
+                      }
+                      onChange={handleFormValuesChange}
+                      element={element}
+                    />
+                  </Form.Group>
+                ))}
+            </Form>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col md="6" sm="12" style={{ marginTop: '15px' }}>
+        <Card className="formCard">
+          <Card.Header className="form-card-header">
+            <Card.Title className="form-title">Form B</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label style={{ marginRight: '5px' }}>Input A</Form.Label>
                 <OverlayTrigger
                   placement="bottom"
-                  overlay={
-                    <Tooltip id={element.id}>{element.description}</Tooltip>
-                  }
+                  overlay={<Tooltip>Description for Input A</Tooltip>}
                 >
                   <IoMdInformationCircleOutline />
                 </OverlayTrigger>
-                <FormElement element={element} />
+                <Form.Control
+                  value={dropDownValue}
+                  onChange={(e) => setDropDownValue(e.target.value)}
+                  as="select"
+                >
+                  <option>Select an option</option>
+                  <option value={true}>True</option>
+                  <option value={false}>False</option>
+                </Form.Control>
               </Form.Group>
-            ))}
-        </Form>
-      </Col>
-      <Col md="6" sm="12">
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+              {dropDownValue === 'true' && (
+                <Form.Group>
+                  <Form.Label>Input B</Form.Label>
+                  <Form.Check name="inputB" label="Input B" type={'radio'} />
+                </Form.Group>
+              )}
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+              {dropDownValue === 'false' && (
+                <Form.Group>
+                  <Form.Label>Input C</Form.Label>
+                  <Form.Check name="inputC" label="Input C" type={'checkbox'} />
+                </Form.Group>
+              )}
+            </Form>
+          </Card.Body>
+        </Card>
       </Col>
     </Row>
   );

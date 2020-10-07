@@ -27,10 +27,8 @@ function App() {
   });
 
   return (
-    <Container
-      style={{ padding: '10px 10px 10px 10px', backgroundColor: '#F4F7FA' }}
-    >
-      <Container>
+    <Container className="App">
+      <Container className="App-container">
         <Card>
           <Nav className="nav" variant="pills" activeKey={activeKey}>
             <Nav.Item>

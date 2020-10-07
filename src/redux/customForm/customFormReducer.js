@@ -23,6 +23,15 @@ const reducer = (state = initialState, action) => {
         errorMessage: action.payload.message,
       };
 
+    case customFormTypes.CHANGE_FORM_VALUE:
+      return {
+        ...state,
+        formValues: {
+          ...state.formValues,
+          [action.payload.id]: action.payload.value,
+        },
+      };
+
     default:
       return state;
   }
