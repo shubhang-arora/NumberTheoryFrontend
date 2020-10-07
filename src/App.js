@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Nav } from 'react-bootstrap';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import { Card, Container, Nav } from 'react-bootstrap';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnalyticsDispatcher } from './redux';
+import './App.css';
+import Analytics from './views/analytics';
+import CustomForm from './views/form';
 function App() {
-  const [activeKey, setActiveKey] = useState('task1');
+  const [activeKey, setActiveKey] = useState('task2');
 
   //Dispatcher
   const dispatch = useDispatch();
@@ -26,21 +28,31 @@ function App() {
 
   return (
     <Container
-      style={{ padding: '10px 10px 10px 10px', backgroundColor: '#f9f9f9' }}
+      style={{ padding: '10px 10px 10px 10px', backgroundColor: '#F4F7FA' }}
     >
       <Container>
-        <Nav variant="pills" activeKey={activeKey}>
-          <Nav.Item>
-            <Nav.Link onClick={() => setActiveKey('task1')} eventKey="task1">
-              Task 1
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link onClick={() => setActiveKey('task2')} eventKey="task2">
-              Task 2
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
+        <Card>
+          <Nav className="nav" variant="pills" activeKey={activeKey}>
+            <Nav.Item>
+              <Nav.Link onClick={() => setActiveKey('task1')} eventKey="task1">
+                Task 1
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link onClick={() => setActiveKey('task2')} eventKey="task2">
+                Task 2
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Card>
+
+        {activeKey === 'task1' && (
+          <Analytics
+            analytics={analytics}
+            loadingAnalytics={loadingAnalytics}
+          />
+        )}
+        {activeKey === 'task2' && <CustomForm />}
       </Container>
     </Container>
   );

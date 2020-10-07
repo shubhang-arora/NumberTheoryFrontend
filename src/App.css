@@ -1,3 +1,7 @@
+#root {
+  background-color: #f4f7fa;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.analytics-col {
+  margin-bottom: 20px;
+}
+
+.analytics-row {
+  margin-top: 20px;
+}
+.nav {
+  margin: 15px;
+}
+
+.graph-card-header {
+  background-color: #ffffff;
 }
