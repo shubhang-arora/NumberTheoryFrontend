@@ -23,6 +23,7 @@
 
 .graph-card-header {
   background-color: #ffffff;
+  border-bottom: none;
 }
 
 .form-card {
@@ -43,4 +44,18 @@
 .form-title {
   font-size: 20px;
   color: #ffffff;
+}
+
+.Graph-container {
+  display: grid;
+  grid-template-columns: 40%;
+}
+
+.Side-panel-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.progress-c-theme {
+  background: red;
 }

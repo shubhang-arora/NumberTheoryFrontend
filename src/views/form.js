@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CustomFormDispatcher } from '../redux';
-import {
-  Form,
-  Row,
-  Col,
-  Button,
-  OverlayTrigger,
-  Tooltip,
-  Image,
-  Card,
-} from 'react-bootstrap';
+import { Form, Row, Col, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
 import FormElement from '../components/formElement';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 const CustomForm = () => {
@@ -34,10 +25,12 @@ const CustomForm = () => {
   };
 
   const [dropDownValue, setDropDownValue] = useState('');
-  console.log(typeof dropDownValue);
 
   return (
-    <Row style={{ marginTop: '20px' }}>
+    <Row style={{ marginTop: '20px', marginBottom: '20px' }}>
+      {/**
+       * Form 1
+       */}
       <Col md="6" sm="12" style={{ marginTop: '15px' }}>
         <Card className="from-card">
           <Card.Header className="form-card-header">
@@ -72,7 +65,10 @@ const CustomForm = () => {
           </Card.Body>
         </Card>
       </Col>
-      <Col md="6" sm="12" style={{ marginTop: '15px' }}>
+      {/**
+       * Form 2
+       */}
+      <Col md="6" sm="12" style={{ marginTop: '15px', marginBottom: '15px' }}>
         <Card className="formCard">
           <Card.Header className="form-card-header">
             <Card.Title className="form-title">Form B</Card.Title>
