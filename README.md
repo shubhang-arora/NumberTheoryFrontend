@@ -17,3 +17,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### localhost:5123/api/analytics/update
 Hit this endpoint to mock realtime feature
+
+## Screenshots
+![Image of Task 1](https://i.imgur.com/jYpjdq5.png)
+
+![Image of Task 2](https://i.imgur.com/KQHad8O.png)
